@@ -50,7 +50,14 @@ const eventSchema = new mongoose.Schema({
     endDate:{
         type:Date,
         default:new Date(Date.now())
-    }
+    },
+    bipsSlot:[
+        {
+            time:Date,
+            alloted:Number,
+            limit:Number
+        }
+    ]
 })
 
 const Event = mongoose.model("Event",eventSchema)

@@ -1,18 +1,22 @@
-import {React,useState} from 'react'
+import {React,useContext,useState} from 'react'
 import './Login.css'
 import Header from '../components/Header/Header'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../context/userContext'
 
 const Login = () => {
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
+  const {setUser} = useContext(UserContext)
 	const navigate = useNavigate()
   const handleSubmit = async(e)=>{
     e.preventDefault()
     const {data} = await axios.post("http://localhost:5000/user/login",{email,password},{withCredentials:true})
-    if(data.success)
-			return navigate("/")
+    if(data.success){
+      setUser(data.user)
+      return navigate("/")
+    }
 		console.log("error")
   }
 
