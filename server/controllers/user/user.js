@@ -7,6 +7,7 @@ const Announcement = require("../../models/announcement/announcement")
 const sendEmail = require("../../utils/sendMail")
 const ErrorHandler = require("../../utils/errorHandler")
 const Registration = require("../../models/registration/registration")
+const axios = require("axios")
 
 //load user
 exports.loadUser = async(req,res,next)=>{
@@ -149,8 +150,4 @@ exports.scheduleBipSlot = async(req,res,next)=>{
     }
 }
 
-// Verify --participant
-exports.verifyMe = async(req,res,next)=>{
-    
-}
 
