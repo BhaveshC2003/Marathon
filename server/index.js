@@ -17,7 +17,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(fileupload())
-app.use(cors({credentials:true,origin:"http://localhost:5173"}))
+app.use(cors({credentials:true,origin:"http://localhost:5174"}))
 
 cloudinary.config({
     cloud_name:process.env.CLOUD_NAME,

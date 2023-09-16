@@ -42,7 +42,8 @@ const Header = () => {
             style={getMenuStyles(menuOpened)}
           >
             <Link to='/'>Home</Link>
-            <a href="#ourcause">Our Cause</a>
+            <Link to='/announcements'>Announcements</Link>
+            <a href="/events">Events</a>
             <a href="#value">Common FAQs</a>
             <a href="#contact-us">Contact Us</a>
 

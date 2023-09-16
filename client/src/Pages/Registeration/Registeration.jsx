@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import Webcam from 'react-webcam'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
+import LoadingSpinner from '../../components/Spinner/Spinner'
 
 const Registeration = () => {
 
@@ -12,23 +13,35 @@ const Registeration = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [image,setImage] = useState(null)
+    
+    const [isLoading, setIsLoading] = useState(false)
+
     const navigate = useNavigate()
+    
     const handleSubmit = async(e)=>{
       e.preventDefault()
+      setIsLoading(true)
       const {data} = await axios.post("http://localhost:5000/user/register",{username,email,password,image},
       {headers:{"Content-Type":"multipart/form-data"}})
       if(data.success)
-        return navigate("/")
+      {
+        setIsLoading(false)
+         return navigate("/")
+      }
+      setIsLoading(false)
       console.log("error")
     }
 
 
   return (
     <>
+
     <div className='App'>
         <Header />
     </div>
     
+    {isLoading ? <div style={{display:"flex", width:"100vw", height:"100vh", justifyContent:"center", alignItems:"center"}}><LoadingSpinner /></div>:
+
     <div style={{display:"flex", justifyContent:"space-around"}}>
     <div style={{maxWidth:"100vw", height:"100vh", display:"flex", justifyContent:"center", alignItems:"center"}}>
     <form className="form-register" onSubmit={handleSubmit}>
@@ -58,7 +71,7 @@ const Registeration = () => {
         
         <br />
 
-        <button className="submit" type="submit" style={{marginBottom:"0.5rem"}}>
+        <button disabled={isLoading} className="submit" type="submit" style={{marginBottom:"0.5rem"}}>
         Register
       </button>
 
@@ -76,7 +89,7 @@ const Registeration = () => {
     width={500}>
     
     {({ getScreenshot }) => (
-      <button className='submit'
+      <button className='submit capture'
         onClick={(e) => {
           e.preventDefault()
           const imageSrc = getScreenshot()
@@ -89,7 +102,7 @@ const Registeration = () => {
     </Webcam>
    </div>
 
-   </div>
+   </div> }
 
     </>
   )

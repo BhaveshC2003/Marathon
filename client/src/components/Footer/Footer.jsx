@@ -1,6 +1,10 @@
 import React from "react";
 import "./Footer.css";
 import {default as logo} from './RC_Juhu_logo.png'
+import InstagramIcon from '@material-ui/icons/Instagram';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import EmailIcon from '@material-ui/icons/Email';
+import InfoIcon from '@material-ui/icons/Info';
 
 const Footer = () => {
   return (
@@ -19,10 +23,12 @@ const Footer = () => {
           <span className="primaryText">Head office</span>
           <span className="secondaryText">New Marine Lines, Churchgate, Mumbai - 400020</span>
           <div className="flexCenter f-menu">
-            <span>Instagram</span>
-            <span>Twitter</span>
-            <span>Mail</span>
-            <span>About Us</span>
+          <div style={{display : 'flex' , justifyContent : 'space-evenly'}}>
+            <InstagramIcon style={{marginRight : '15px'}}/>
+            <TwitterIcon style={{marginRight : '15px'}}/>
+            <EmailIcon style={{marginRight : '15px'}}/>
+            <InfoIcon />
+          </div>
           </div>
         </div>
       </div>
