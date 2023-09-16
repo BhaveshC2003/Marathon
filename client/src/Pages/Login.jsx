@@ -1,9 +1,10 @@
-import {React,useState} from 'react'
+import {React,useContext,useState} from 'react'
 import './Login.css'
 import Header from '../components/Header/Header'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
 import LoadingSpinner from '../components/Spinner/Spinner'
+import { UserContext } from '../context/userContext'
 
 const Login = () => {
   const [email,setEmail] = useState("")
@@ -11,6 +12,7 @@ const Login = () => {
   
   const [isLoading, setIsLoading] = useState(false)
 
+  const {setUser} = useContext(UserContext)
 	const navigate = useNavigate()
   const handleSubmit = async(e)=>{
     e.preventDefault()
@@ -22,6 +24,11 @@ const Login = () => {
 			return navigate("/")
     }
     setIsLoading(false)
+
+    if(data.success){
+      setUser(data.user)
+      return navigate("/")
+    }
 		console.log("error")
   }
 

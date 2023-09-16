@@ -25,22 +25,10 @@ const userSchema = new mongoose.Schema({
     image:{
         type:String
     },
-    registrations:[
-        {
-            event:{
-                type:mongoose.Schema.Types.ObjectId,
-                ref:"Event"
-            },
-            verified:{
-                type:Boolean,
-                default:false
-            }
-        }
-    ],
     certificates:[
         {
             event:{
-                type:mongoose.Schema.Types.ObjectId,
+                type:mongoose.Schema.ObjectId,
                 ref:"Event"
             },
             url:{

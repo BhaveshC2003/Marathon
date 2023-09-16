@@ -1,5 +1,5 @@
 import "./App.css";
-import { ReactDOM } from "react";
+import { ReactDOM, useEffect, useState, useContext } from "react";
 import { Router, Routes, Route, BrowserRouter } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import Login from "./Pages/Login";
@@ -11,10 +11,21 @@ import Announcements from "./Pages/Announcements/Announcements";
 import CreateAnnouncementForm from "./Pages/Announcements/CreateAnnouncementForm";
 import Location from "./Pages/Location/Location";
 import CreateEvents from "./components/Events/CreateEvents";
+import { UserContext } from "./context/userContext";
+import axios from "axios";
 
 function App() {
+  const [user, setUser] = useState()
+  useEffect(() => {
+    axios.get("http://localhost:5000/user/loaduser", { withCredentials: true })
+      .then(({ data }) => {
+        if(data.success)
+          setUser(data.user)
+      })
+  },[])
   return (
-      <BrowserRouter >
+    <UserContext.Provider value={{user,setUser}}>
+      <BrowserRouter>
         <Routes >
           <Route path='/' element={<HomePage />} />
           <Route path='/login' element={<Login />} />
@@ -27,6 +38,7 @@ function App() {
         </Routes>
         <Footer />
       </BrowserRouter>
+    </UserContext.Provider>
   );
 }
 

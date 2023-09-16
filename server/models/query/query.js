@@ -7,16 +7,16 @@ const querySchema = new mongoose.Schema({
         default:"Not answered"
     },
     askedBy:{
-        type:mongoose.Schema.Types.ObjectId,
+        type:mongoose.Schema.ObjectId,
         ref:"User"
     },
     answeredBy:{
-        type:mongoose.Schema.Types.ObjectId,
+        type:mongoose.Schema.ObjectId,
         ref:"User",
         required:false
     },
     event:{
-        type:mongoose.Schema.Types.ObjectId,
+        type:mongoose.Schema.ObjectId,
         ref:"Event"
     }
 })
